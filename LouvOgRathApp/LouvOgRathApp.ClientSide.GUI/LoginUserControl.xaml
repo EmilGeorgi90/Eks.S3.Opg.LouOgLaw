@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="LouvOgRathApp.ClientSide.GUI.LoginUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LouvOgRathApp.ClientSide.GUI"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid Height="300" Width="300">
+        <Button Content="login" HorizontalAlignment="Left" Margin="129,166,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click"/>
+        <TextBox x:Name="tbxUsername" HorizontalAlignment="Left" Height="23" Margin="129,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="lblUsername" Content="Username" HorizontalAlignment="Left" Margin="54,104,0,0" VerticalAlignment="Top" Width="70"/>
+        <Label x:Name="lblPassword" Content="Password" HorizontalAlignment="Left" Margin="54,135,0,0" VerticalAlignment="Top" Width="70"/>
+        <PasswordBox x:Name="pbxPassword" HorizontalAlignment="Left" Margin="129,136,0,0" VerticalAlignment="Top" Width="120" Height="25"/>
+        <Button x:Name="btnRegister" Content="register" HorizontalAlignment="Left" Margin="129,191,0,0" VerticalAlignment="Top" Width="120" Click="btnRegister_Click"/>
+    </Grid>
+</UserControl>
