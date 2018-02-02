@@ -23,7 +23,6 @@ namespace LouvOgRathApp.ClientSide.ClientControllers
         #endregion
 
 
-
         #region methods
         /// <summary>
         /// used for checking the connection

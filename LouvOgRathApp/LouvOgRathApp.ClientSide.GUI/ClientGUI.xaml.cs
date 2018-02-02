@@ -53,9 +53,20 @@ namespace LouvOgRathApp.ClientSide.GUI
                     tbkThirdNewestSummery.Text = sums.First<MettingSummery>().Resumé;
                     sums.RemoveAt(0);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show($"der var kun fundet {sums.Count} ");
+                    if(sums.Count <= 2) { 
+                    tbkThirdNewestSummery.Text = "N/A";
+                    }
+                    if(sums.Count < 2)
+                    {
+                        tbkSecondNewestSummery.Text = "N/A";
+                    }
+                    if(sums.Count < 1)
+                    {
+                        tbkNewestSummery.Text = "N/A";
+                    }
                 }
             }
         }

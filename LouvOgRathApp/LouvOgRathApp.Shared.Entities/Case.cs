@@ -17,6 +17,10 @@ namespace LouvOgRathApp.Shared.Entities
         private Person clientPerson;
         private Person lawyerPerson;
         private Person secretaryPerson;
+        private MettingSummery summery;
+
+
+
 
 
         /// <summary>
@@ -69,6 +73,17 @@ namespace LouvOgRathApp.Shared.Entities
             SecretaryPerson = secretaryPerson;
             LawyerPerson = lawyerPerson;
             ClientPerson = clientPerson;
+        }
+        public Case(string caseName, CaseKind caseKind, Person secretaryPerson, Person lawyerPerson, Person clientPerson) : this(caseName, caseKind)
+        {
+            SecretaryPerson = secretaryPerson;
+            LawyerPerson = lawyerPerson;
+            ClientPerson = clientPerson;
+        }
+
+        public Case(string caseName, CaseKind caseKind, Person secretaryPerson, Person lawyerPerson, Person clientPerson, MettingSummery summery) : this(caseName, caseKind, secretaryPerson, lawyerPerson, clientPerson)
+        {
+            Summery = summery;
         }
 
         public int Id
@@ -141,6 +156,11 @@ namespace LouvOgRathApp.Shared.Entities
         {
             get { return clientPerson; }
             set { clientPerson = value; }
+        }
+        public MettingSummery Summery
+        {
+            get { return summery; }
+            set { summery = value; }
         }
     }
 }

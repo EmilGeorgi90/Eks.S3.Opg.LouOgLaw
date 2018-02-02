@@ -110,21 +110,21 @@ namespace LouvOgRathApp.ServerSide.ServerControllers
                 switch (clientRequest.RequestedAction)
                 {
                     case RequestedAction.GetAllCases:
-                        CasesDataAccess caseDataAccess = new CasesDataAccess();
+                        CasesRepository caseDataAccess = new CasesRepository("constring");
                         List<Case> cases = caseDataAccess.GetAllCase();
                         Case[] caseArray = cases.ToArray();
                         TransmissionData transmission = new TransmissionData(caseArray);
                         RespondToClient(transmission);
                         break;
                     case RequestedAction.GetAllSummerysById:
-                        SummeryDataAccess summeryDataAccess = new SummeryDataAccess();
+                        SummeryRepository summeryDataAccess = new SummeryRepository("constring");
                         Case summery = (Case)clientRequest.Data.Entity;
                         List<MettingSummery> summerys = summeryDataAccess.GetAllSummerysById(summery.Id);
                         TransmissionData transmissionSum = new TransmissionData(summery);
                         RespondToClient(transmissionSum);
                         break;
                     case RequestedAction.SaveNewSummery:
-                        SummeryDataAccess summeryData = new SummeryDataAccess();
+                        SummeryRepository summeryData = new SummeryRepository("constring");
                         foreach (MettingSummery item in clientRequest.Data.Entities)
                         {
                             summeryData.SafeSummery(item);
@@ -132,7 +132,7 @@ namespace LouvOgRathApp.ServerSide.ServerControllers
                         RespondToClient(clientRequest.Data);
                         break;
                     case RequestedAction.SaveNewCase:
-                        CasesDataAccess caseData = new CasesDataAccess();
+                        CasesRepository caseData = new CasesRepository("constring");
                         foreach (Case item in clientRequest.Data.Entities)
                         {
                             caseData.AddCase(item);
@@ -140,14 +140,14 @@ namespace LouvOgRathApp.ServerSide.ServerControllers
                         RespondToClient(clientRequest.Data);
                         break;
                     case RequestedAction.GetCasesForTheClient:
-                        caseDataAccess = new CasesDataAccess();
+                        caseDataAccess = new CasesRepository("constring");
                         UserCredentials clientName = (UserCredentials)clientRequest.Data.Entity;
                         cases = caseDataAccess.GetCases(clientName.Username);
                         transmission = new TransmissionData(cases.ToArray());
                         RespondToClient(transmission);
                         break;
                     case RequestedAction.GetUserCredentialsAttempt:
-                        UserCredentialsDataAccess access = new UserCredentialsDataAccess();
+                        UserCredentialsRepository access = new UserCredentialsRepository("constring");
                         RoleKind? rolekind;
                         bool IsUser;
                         List<UserCredentials> userInfos = new List<UserCredentials>();
@@ -164,7 +164,7 @@ namespace LouvOgRathApp.ServerSide.ServerControllers
                         }
                         break;
                     case RequestedAction.CreateUser:
-                        access = new UserCredentialsDataAccess();
+                        access = new UserCredentialsRepository("constring");
                         userInfos = new List<UserCredentials>();
                         foreach (UserCredentials uInfo in clientRequest.Data.Entities)
                         {
@@ -176,20 +176,20 @@ namespace LouvOgRathApp.ServerSide.ServerControllers
                         }
                         break;
                     case RequestedAction.GetSummerysById:
-                        summeryDataAccess = new SummeryDataAccess();
+                        summeryDataAccess = new SummeryRepository("constring");
                         summery = (Case)clientRequest.Data.Entity;
                         summerys = summeryDataAccess.GetAllSummerysById(summery.Id);
                         transmissionSum = new TransmissionData(summerys);
                         RespondToClient(transmissionSum);
                         break;
                     case RequestedAction.GetPersons:
-                        PersonDataAccess person = new PersonDataAccess();
+                        PersonRepository person = new PersonRepository("constring");
                         List<Person> persons = person.GetAllPersons();
                         data = new TransmissionData(persons);
                         RespondToClient(data);
                         break;
                     case RequestedAction.GetSummeryToClient:
-                        summeryDataAccess = new SummeryDataAccess();
+                        summeryDataAccess = new SummeryRepository("constring");
                         summery = (Case)clientRequest.Data.Entity;
                         summerys = summeryDataAccess.GetSummeryToClient(summery.Id);
                         transmissionSum = new TransmissionData(summerys);

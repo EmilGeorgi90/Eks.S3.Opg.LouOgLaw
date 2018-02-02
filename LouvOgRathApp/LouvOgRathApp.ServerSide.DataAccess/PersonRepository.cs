@@ -8,25 +8,11 @@ using System.Threading.Tasks;
 
 namespace LouvOgRathApp.ServerSide.DataAccess
 {
-    public class PersonDataAccess
+    public class PersonRepository : RepositoryBase
     {
-        #region fields
-        private readonly Executor executor;
-        #endregion
-
-
         #region contructer
-        public PersonDataAccess()
+        public PersonRepository(string nameOfConfigFileConnectionString) : base(nameOfConfigFileConnectionString)
         {
-            executor = new Executor(@"Data Source=(LocalDb)\MSSQLLocalDB;Initial Catalog=louvOgLaw;Integrated Security=True");
-        }
-        #endregion
-
-
-        #region propetis
-        public Executor Executor
-        {
-            get { return executor; }
         }
         #endregion
 

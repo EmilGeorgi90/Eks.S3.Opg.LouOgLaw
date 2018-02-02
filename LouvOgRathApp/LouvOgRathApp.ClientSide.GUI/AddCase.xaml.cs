@@ -48,11 +48,11 @@ namespace LouvOgRathApp.ClientSide.GUI
         {
             client = new ClientControllers.Client(new IPEndPoint(IPAddress.Parse("127.0.0.1"), 65432));
             List<Case> cases = new List<Case>();
-            Case @case = new Case(tbxCaseTitle.Text, (CaseKind)cmbCaseKind.SelectedItem, (Person)cmbSecretary.SelectedItem, (Person)tbxCaseLawyer.SelectedItem, (Person)tbxCaseClient.SelectedItem, 5);
+            Case @case = new Case(tbxCaseTitle.Text, (CaseKind)cmbCaseKind.SelectedItem, (Person)cmbSecretary.SelectedItem, (Person)tbxCaseLawyer.SelectedItem, (Person)tbxCaseClient.SelectedItem, new MettingSummery(tbxResume.Text));
             cases.Add(@case);
             //Controller.SendData(SaveNewCase(),cases);
             client.SaveCase(cases.ToArray());
-            MessageBox.Show("you have sent the request perfect");
+            MessageBox.Show("der er her med blevet oprettet en ny sag.");
             AssignUsercontrol(new SecretaryGUI());
         }
 

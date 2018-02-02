@@ -9,25 +9,12 @@ using System.Threading.Tasks;
 
 namespace LouvOgRathApp.ServerSide.DataAccess
 {
-    public class CasesDataAccess
+    public class CasesRepository : RepositoryBase
     {
-        #region fields
-        private readonly Executor executor;
-        #endregion
-
-
         #region contructer
-        public CasesDataAccess()
+        public CasesRepository(string nameOfConfigFileConnectionString) : base(nameOfConfigFileConnectionString)
         {
-            executor = new Executor(@"Data Source=(LocalDb)\MSSQLLocalDB;Initial Catalog=louvOgLaw;Integrated Security=True");
-        }
-        #endregion
-
-
-        #region propetis
-        public Executor Executor
-        {
-            get { return executor; }
+            
         }
         #endregion
 
@@ -57,7 +44,7 @@ namespace LouvOgRathApp.ServerSide.DataAccess
         /// <param name="case"></param>
         public void AddCase(Case @case)
         {
-            Executor.Execute($"INSERT INTO [Case] (caseName ,Clientid, Lawyerid, secretaryId, caseKindId) VALUES ('{@case.CaseName}' ,{@case.ClientPerson.Id}, {@case.LawyerPerson.Id}, {@case.SecretaryPerson.Id}, {(int)@case.CaseKind})");
+            Executor.Execute($"EXECUTE InsertIntoCaseAndSummery @caseName = '{@case.CaseName}', @Clientid = {@case.ClientPerson.Id}, @Lawyerid = {@case.LawyerPerson.Id}, @secretary = {@case.SecretaryPerson.Id}, @caseKindId = {(int)@case.CaseKind}, @Summery = '{@case.Summery}'");
         }
         /// <summary>
         /// gets all cases with the specifik Id

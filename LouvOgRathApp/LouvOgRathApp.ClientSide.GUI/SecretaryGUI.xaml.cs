@@ -58,6 +58,13 @@ namespace LouvOgRathApp.ClientSide.GUI
                 MettingSummery summery = new MettingSummery(tbxNewSummery.Text, @case.CaseName, @case);
                 metting.Add(summery);
                 client.SaveSummery(metting.ToArray());
+                client = new ClientControllers.Client(new IPEndPoint(IPAddress.Parse("127.0.0.1"), 65432));
+                List<MettingSummery> summerys = new List<MettingSummery>();
+                foreach (MettingSummery item in client.GetAllSummerys(@case))
+                {
+                    summerys.Add(item);
+                }
+                dgExistsingSummery.ItemsSource = summerys;
             }
             else
             {

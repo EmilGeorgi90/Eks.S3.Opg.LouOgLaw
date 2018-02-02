@@ -8,26 +8,11 @@ using System.Threading.Tasks;
 
 namespace LouvOgRathApp.ServerSide.DataAccess
 {
-    public class SummeryDataAccess
-    {
-        #region fields
-        private readonly Executor executor;
-        #endregion
-
-
+    public class SummeryRepository : RepositoryBase
+    { 
         #region contructer
-        public SummeryDataAccess()
+        public SummeryRepository(string nameOfConfigFileConnectionString) : base(nameOfConfigFileConnectionString)
         {
-
-            executor = new Executor(@"Data Source=(LocalDb)\MSSQLLocalDB;Initial Catalog=louvOgLaw;Integrated Security=True");
-        }
-        #endregion
-
-
-        #region propetis
-        public Executor Executor
-        {
-            get { return executor; }
         }
         #endregion
 
